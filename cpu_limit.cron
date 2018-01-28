@@ -1,0 +1,1 @@
+*/5 * * * * cd /root/cpu/&&/bin/bash ./cpu_core 

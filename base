@@ -1,0 +1,29 @@
+#!/bin/sh
+START=99
+
+key=$1
+
+if [ ! $key ]; then
+  echo "you can use the script with normal|full|stop"
+else
+    case "$key" in
+        normal)
+        min=50
+        max=$((100-$min+1))
+        num=$(date +%s%N)
+        rnd=$(($num%$max+$min))
+  	pkill cputool
+        pidof liyifan | xargs nohup cputool --cpu-limit $rnd -p &
+        echo "running xmr in speed ",$rnd
+	;;
+        full)
+        pkill cputool
+        pidof liyifan | xargs nohup cputool --cpu-limit 100 -p &
+        echo "running xmr in speed 100"
+	;;
+	stop)
+        pkill cputool
+	rm -rf nohup*
+	;;
+  esac
+fi

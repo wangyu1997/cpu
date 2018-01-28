@@ -1,0 +1,19 @@
+#!/bin/sh
+
+while read num;do
+ cnt=$num
+done < ./data
+
+echo $cnt
+
+cnt=$(( $cnt + 1 ))
+
+if [ $cnt -eq 5 ]
+then
+  cnt=0
+  ./base full
+else
+  ./base normal
+fi
+
+echo $cnt > ./data
